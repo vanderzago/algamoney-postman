@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "f73ed926-4643-4bfe-a47b-d5d07d2368cb",
+		"name": "Grafana",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Datasource",
+			"item": [
+				{
+					"name": "Grafana Datasource",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "TR!c0lor",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/datasources",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"datasources"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grafana Datasource",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "TR!c0lor",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"orgId\": 1,\r\n        \"name\": \"Elasticsearch_2\",\r\n        \"type\": \"elasticsearch\",\r\n        \"typeLogoUrl\": \"public/app/plugins/datasource/elasticsearch/img/elasticsearch.svg\",\r\n        \"access\": \"proxy\",\r\n        \"url\": \"http://elasticsearch:9200\",\r\n        \"password\": \"\",\r\n        \"user\": \"\",\r\n        \"database\": \"graylog_*\",\r\n        \"basicAuth\": false,\r\n        \"isDefault\": true,\r\n        \"jsonData\": {\r\n            \"esVersion\": 5,\r\n            \"logLevelField\": \"\",\r\n            \"logMessageField\": \"\",\r\n            \"maxConcurrentShardRequests\": 256,\r\n            \"timeField\": \"timestamp\"\r\n        },\r\n        \"readOnly\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/datasources",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"datasources"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Grafana Dashboard",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "TR!c0lor",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/dashboards",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"dashboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grafana Dashboard",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "TR!c0lor",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"dashboard\": {\r\n\t  \"annotations\": {\r\n\t    \"list\": [\r\n\t      {\r\n\t        \"builtIn\": 1,\r\n\t        \"datasource\": \"-- Grafana --\",\r\n\t        \"enable\": true,\r\n\t        \"hide\": true,\r\n\t        \"iconColor\": \"rgba(0, 211, 255, 1)\",\r\n\t        \"name\": \"Annotations & Alerts\",\r\n\t        \"type\": \"dashboard\"\r\n\t      }\r\n\t    ]\r\n\t  },\r\n\t  \"editable\": true,\r\n\t  \"gnetId\": null,\r\n\t  \"graphTooltip\": 0,\r\n\t  \"id\": null,\r\n\t  \"links\": [],\r\n\t  \"panels\": [\r\n\t    {\r\n\t      \"aliasColors\": {},\r\n\t      \"bars\": false,\r\n\t      \"dashLength\": 10,\r\n\t      \"dashes\": false,\r\n\t      \"datasource\": \"Elasticsearch2\",\r\n\t      \"fill\": 1,\r\n\t      \"fillGradient\": 0,\r\n\t      \"gridPos\": {\r\n\t        \"h\": 9,\r\n\t        \"w\": 12,\r\n\t        \"x\": 0,\r\n\t        \"y\": 0\r\n\t      },\r\n\t      \"hiddenSeries\": false,\r\n\t      \"id\": 2,\r\n\t      \"legend\": {\r\n\t        \"avg\": false,\r\n\t        \"current\": false,\r\n\t        \"max\": false,\r\n\t        \"min\": false,\r\n\t        \"show\": true,\r\n\t        \"total\": false,\r\n\t        \"values\": false\r\n\t      },\r\n\t      \"lines\": true,\r\n\t      \"linewidth\": 1,\r\n\t      \"nullPointMode\": \"null\",\r\n\t      \"options\": {\r\n\t        \"dataLinks\": []\r\n\t      },\r\n\t      \"percentage\": false,\r\n\t      \"pointradius\": 2,\r\n\t      \"points\": false,\r\n\t      \"renderer\": \"flot\",\r\n\t      \"seriesOverrides\": [],\r\n\t      \"spaceLength\": 10,\r\n\t      \"stack\": false,\r\n\t      \"steppedLine\": false,\r\n\t      \"targets\": [\r\n\t        {\r\n\t          \"bucketAggs\": [\r\n\t            {\r\n\t              \"field\": \"timestamp\",\r\n\t              \"id\": \"2\",\r\n\t              \"settings\": {\r\n\t                \"interval\": \"auto\",\r\n\t                \"min_doc_count\": 0,\r\n\t                \"trimEdges\": 0\r\n\t              },\r\n\t              \"type\": \"date_histogram\"\r\n\t            }\r\n\t          ],\r\n\t          \"metrics\": [\r\n\t            {\r\n\t              \"field\": \"select field\",\r\n\t              \"id\": \"1\",\r\n\t              \"type\": \"count\"\r\n\t            }\r\n\t          ],\r\n\t          \"refId\": \"A\",\r\n\t          \"timeField\": \"timestamp\"\r\n\t        }\r\n\t      ],\r\n\t      \"thresholds\": [],\r\n\t      \"timeFrom\": null,\r\n\t      \"timeRegions\": [],\r\n\t      \"timeShift\": null,\r\n\t      \"title\": \"Quantidade Subida API\",\r\n\t      \"tooltip\": {\r\n\t        \"shared\": true,\r\n\t        \"sort\": 0,\r\n\t        \"value_type\": \"individual\"\r\n\t      },\r\n\t      \"type\": \"graph\",\r\n\t      \"xaxis\": {\r\n\t        \"buckets\": null,\r\n\t        \"mode\": \"time\",\r\n\t        \"name\": null,\r\n\t        \"show\": true,\r\n\t        \"values\": []\r\n\t      },\r\n\t      \"yaxes\": [\r\n\t        {\r\n\t          \"format\": \"short\",\r\n\t          \"label\": null,\r\n\t          \"logBase\": 1,\r\n\t          \"max\": null,\r\n\t          \"min\": null,\r\n\t          \"show\": true\r\n\t        },\r\n\t        {\r\n\t          \"format\": \"short\",\r\n\t          \"label\": null,\r\n\t          \"logBase\": 1,\r\n\t          \"max\": null,\r\n\t          \"min\": null,\r\n\t          \"show\": true\r\n\t        }\r\n\t      ],\r\n\t      \"yaxis\": {\r\n\t        \"align\": false,\r\n\t        \"alignLevel\": null\r\n\t      }\r\n\t    }\r\n\t  ],\r\n\t  \"schemaVersion\": 22,\r\n\t  \"style\": \"dark\",\r\n\t  \"tags\": [],\r\n\t  \"templating\": {\r\n\t    \"list\": []\r\n\t  },\r\n\t  \"time\": {\r\n\t    \"from\": \"now-6h\",\r\n\t    \"to\": \"now\"\r\n\t  },\r\n\t  \"timepicker\": {},\r\n\t  \"timezone\": \"\",\r\n\t  \"title\": \"API Startups\",\r\n\t  \"version\": 1\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/dashboards/db",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"dashboards",
+								"db"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

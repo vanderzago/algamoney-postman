@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "7305fe46-8771-41e9-ad0d-40e30896b143",
+		"name": "Elasticsearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Elastic Index",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/_cat/indices?v&pretty",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"_cat",
+						"indices"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": null
+						},
+						{
+							"key": "pretty",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Elastic Mapping",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/_mapping",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"_mapping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Elastic Graylog Mapping",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/graylog_0/_mapping",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"graylog_0",
+						"_mapping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

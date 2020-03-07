@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "e4e1dd8e-09f7-42cf-a463-2ad3d1488552",
+		"name": "Graylog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Input",
+			"item": [
+				{
+					"name": "Graylog Inputs",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/system/inputs",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"system",
+								"inputs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Graylog Inputs",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-By",
+								"value": "cli",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"title\": \"Algamoney-API\",\r\n            \"type\": \"org.graylog2.inputs.gelf.udp.GELFUDPInput\",\r\n            \"global\": true,\r\n            \"configuration\":   {\r\n                \"recv_buffer_size\": 1048576,\r\n                \"tcp_keepalive\": false,\r\n                \"use_null_delimiter\": true,\r\n                \"number_worker_threads\": 2,\r\n                \"tls_client_auth_cert_file\": \"\",\r\n                \"bind_address\": \"0.0.0.0\",\r\n                \"tls_cert_file\": \"\",\r\n                \"decompress_size_limit\": 8388608,\r\n                \"port\": 12201,\r\n                \"tls_key_file\": \"\",\r\n                \"tls_enable\": false,\r\n                \"tls_key_password\": \"\",\r\n                \"max_message_size\": 2097152,\r\n                \"tls_client_auth\": \"disabled\",\r\n                \"override_source\": null\r\n                },\r\n            \"node\": null\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/system/inputs",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"system",
+								"inputs"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "Graylog Admin Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-By",
+								"type": "text",
+								"value": "cli"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/api/users/admin/tokens/icinga",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"admin",
+								"tokens",
+								"icinga"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Graylog Admin Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "1vr204kpp5ol2696es4aerl079ase0j625bb9krokg7sioudergd",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-By",
+								"type": "text",
+								"value": "cli"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/api/users/admin/tokens/?pretty=true",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"admin",
+								"tokens",
+								""
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

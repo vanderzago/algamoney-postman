@@ -1,0 +1,3567 @@
+{
+	"info": {
+		"_postman_id": "b82657b2-2180-42a3-a2f6-7f0677ccd731",
+		"name": "Rundeck",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "System details",
+			"item": [
+				{
+					"name": "System info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/system/info",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "List Tokens",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/tokens",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List user tokens",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/tokens/admin",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"tokens",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/token/bdf46607-8489-41b8-842f-02d39f7da9d1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"token",
+								"bdf46607-8489-41b8-842f-02d39f7da9d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a4676677-dbfd-486c-b3b8-aa7423c10b08",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ad65f60-dc4c-4260-938e-0ad0bb9af751",
+								"exec": [
+									"pm.variables.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": \"admin\",\r\n  \"roles\": [\r\n\t\"admin\",\r\n    \"sre\",\r\n    \"dev\"\r\n  ],\r\n  \"duration\": \"30d\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/tokens",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete token",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/token/44800c4e-b023-497d-9cef-057f1c175bf4",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"token",
+								"44800c4e-b023-497d-9cef-057f1c175bf4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User Profile",
+			"item": [
+				{
+					"name": "User list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/user/list/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"user",
+								"list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/user/info",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"user",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Another User profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/user/info/admin",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"user",
+								"info",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Same User Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"admin\",\r\n    \"lastName\":\"admin\",\r\n    \"email\":\"admin@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/user/info",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"user",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Another User Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"admin\",\r\n    \"lastName\":\"admin\",\r\n    \"email\":\"admin@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/user/info/admin",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"user",
+								"info",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Log Storage",
+			"item": [
+				{
+					"name": "Log Storage Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/system/logstorage",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"logstorage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all executions with incomplete log storage",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/system/logstorage/incomplete",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"logstorage",
+								"incomplete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume Incomplete Log Storage",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/system/logstorage/incomplete/resume",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"logstorage",
+								"incomplete",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Execution Mode",
+			"item": [
+				{
+					"name": "Set Active Mode",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/system/executions/enable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"executions",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Passive Mode",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/system/executions/disable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"executions",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cluster Mode",
+			"item": [
+				{
+					"name": "Takeover Schedule in Cluster Mode",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"server\": {\r\n    \"uuid\": \"{{uuid}}\",\r\n    \"all\": true\r\n  },\r\n  \"project\": \"{{project}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/scheduler/takeover",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scheduler",
+								"takeover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Scheduled Jobs For a Cluster Server",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/scheduler/server/{{uuid}}/jobs",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scheduler",
+								"server",
+								"{{uuid}}",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Scheduled Jobs For this Cluster Server",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/scheduler/jobs",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scheduler",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Listing History",
+			"item": [
+				{
+					"name": "List history for a project",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/history",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ACLs",
+			"item": [
+				{
+					"name": "List System ACL Policies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/system/acl/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"acl",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an ACL Policy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/system/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an ACL Policy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contents\": \"description: \\\"my policy\\\"\\ncontext:\\n  application: rundeck\\nfor:\\n  project:\\n    - allow: read\\nby:\\n  group: build\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/system/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an ACL Policy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contents\": \"description: \\\"my policy\\\"\\ncontext:\\n  application: rundeck\\nfor:\\n  project:\\n    - allow: read\\nby:\\n  group: build\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/system/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an ACL Policy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/system/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"system",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "Listing Jobs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1452de4-df71-4105-b6f8-0b5946c832ea",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running a Job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4d1d418-161f-4902-986c-8298b367941d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status Running\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"running\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/run",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"run"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running a Job 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bf39b175-b7df-478d-986e-c07ac82f50c0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status Running\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"running\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/run",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"run"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running a Job 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32ef292f-212b-42b5-bfeb-3da5133ddb1f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status Running\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"running\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/run",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"run"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exporting Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/export?format=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"export"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Importing Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/yaml"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/import?fileformat=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"import"
+							],
+							"query": [
+								{
+									"key": "fileformat",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Executing a jon",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting a Job Definition",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleting a Job Definition",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Job Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ids\": [\r\n    \"fefa50e1-2265-47af-b101-d4bbaa3ba21c\",\r\n    \"f07e2311-4dae-40ca-bdfa-412bd223f863\"\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/jobs/delete",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"jobs",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Executions for a Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/execution/enable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"execution",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Executions for a Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/execution/disable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"execution",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Scheduling for a Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/schedule/enable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"schedule",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Scheduling for a Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/schedule/disable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"schedule",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Job Execution enable",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ids\": [\r\n    \"fefa50e1-2265-47af-b101-d4bbaa3ba21c\",\r\n    \"f07e2311-4dae-40ca-bdfa-412bd223f863\"\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/jobs/execution/enable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"jobs",
+								"execution",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Job Execution disable",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ids\": [\r\n    \"fefa50e1-2265-47af-b101-d4bbaa3ba21c\",\r\n    \"f07e2311-4dae-40ca-bdfa-412bd223f863\"\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/jobs/execution/disable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"jobs",
+								"execution",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Job Schedule disable",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ids\": [\r\n    \"fefa50e1-2265-47af-b101-d4bbaa3ba21c\",\r\n    \"f07e2311-4dae-40ca-bdfa-412bd223f863\"\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/jobs/execution/disable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"jobs",
+								"execution",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Job Schedule enable",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ids\": [\r\n    \"fefa50e1-2265-47af-b101-d4bbaa3ba21c\",\r\n    \"f07e2311-4dae-40ca-bdfa-412bd223f863\"\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/jobs/execution/enable",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"jobs",
+								"execution",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Metadata",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/info",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload a File for a Job Option",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "octet/stream"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/input/file?optionName=[NAME]&fileName=[FILENAME]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"input",
+								"file"
+							],
+							"query": [
+								{
+									"key": "optionName",
+									"value": "[NAME]"
+								},
+								{
+									"key": "fileName",
+									"value": "[FILENAME]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Files Uploaded for a Job",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/input/files",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"input",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Info About an Uploaded File",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}jobs/file/[ID]",
+							"host": [
+								"{{baseurl}}jobs"
+							],
+							"path": [
+								"file",
+								"[ID]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Importing Jobs Graylog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04f5d7b9-7db0-4326-b762-15ab09059b8e",
+								"exec": [
+									"var jsonData = pm.response.json().succeeded;",
+									"",
+									"jsonData.forEach(function(succeeded) {",
+									"    pm.environment.set(\"jobid\", succeeded.id);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/yaml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "- defaultTab: nodes\r\n  description: Invoca a API do Graylog para criar o input\r\n  executionEnabled: true\r\n  loglevel: INFO\r\n  name: Graylog-create-input-5\r\n  nodeFilterEditable: false\r\n  options:\r\n  - name: BASIC_AUTH\r\n    value: YWRtaW46YWRtaW4=\r\n  - name: URL\r\n    value: http://graylog:9000\r\n  plugins:\r\n    ExecutionLifecycle: null\r\n  scheduleEnabled: true\r\n  sequence:\r\n    commands:\r\n    - description: Execução do Script\r\n      exec: /tmp/graylog-create-input.sh ${option.URL} ${option.BASIC_AUTH}\r\n    keepgoing: false\r\n    strategy: node-first"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/import?fileformat=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"import"
+							],
+							"query": [
+								{
+									"key": "fileformat",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Importing Jobs Grafana Datasource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f72b87f-57ce-41a6-a3ef-15d46a8326f6",
+								"exec": [
+									"var jsonData = pm.response.json().succeeded;",
+									"",
+									"jsonData.forEach(function(succeeded) {",
+									"    pm.environment.set(\"jobid\", succeeded.id);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/yaml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "- defaultTab: nodes\r\n  description: Invoca a API do Grafana para criar o datasource\r\n  executionEnabled: true\r\n  loglevel: INFO\r\n  name: Grafana-create-datasource\r\n  nodeFilterEditable: false\r\n  options:\r\n  - name: BASIC_AUTH\r\n    value: YWRtaW46YWRtaW4=\r\n  - name: ELASTICSEARCH_URL\r\n    value: http://elasticsearch:9200\r\n  - name: URL\r\n    value: http://grafana:3000\r\n  plugins:\r\n    ExecutionLifecycle: null\r\n  scheduleEnabled: true\r\n  sequence:\r\n    commands:\r\n    - exec: /tmp/grafana-create-datasource.sh ${option.URL} ${option.BASIC_AUTH} ${option.ELASTICSEARCH_URL}\r\n    keepgoing: false\r\n    strategy: node-first"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/import?fileformat=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"import"
+							],
+							"query": [
+								{
+									"key": "fileformat",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Importing Jobs Grafana Dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c30429ef-533a-4200-837d-b304d9e455ff",
+								"exec": [
+									"var jsonData = pm.response.json().succeeded;",
+									"",
+									"jsonData.forEach(function(succeeded) {",
+									"    pm.environment.set(\"jobid\", succeeded.id);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/yaml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "- defaultTab: nodes\r\n  description: Invoca a API do Grafana para criar o dashboard\r\n  executionEnabled: true\r\n  loglevel: INFO\r\n  name: Grafana-create-dashboard\r\n  nodeFilterEditable: false\r\n  options:\r\n  - name: URL\r\n    value: http://grafana:3000\r\n  - name: BASIC_AUTH\r\n    value: YWRtaW46YWRtaW4=\r\n  plugins:\r\n    ExecutionLifecycle: null\r\n  scheduleEnabled: true\r\n  sequence:\r\n    commands:\r\n    - exec: /tmp/grafana-create-dashboard.sh ${option.URL} ${option.BASIC_AUTH}\r\n    keepgoing: false\r\n    strategy: node-first"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/import?fileformat=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"import"
+							],
+							"query": [
+								{
+									"key": "fileformat",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Executions",
+			"item": [
+				{
+					"name": "Getting Executions for a Job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6305dc33-17d2-4514-afcc-e06ae97158fe",
+								"exec": [
+									"pm.test(\"Job execution is succeedec\", function () {",
+									"    var jsonData = pm.response.json().executions;",
+									"",
+									"    jsonData.forEach(function(executions) {",
+									"        pm.expect(executions.status).to.eql(\"succeeded\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting Executions for a Job 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5bf158c-6084-42a0-bf62-7be9962dc945",
+								"exec": [
+									"pm.test(\"Job execution is succeedec\", function () {",
+									"    var jsonData = pm.response.json().executions;",
+									"",
+									"    jsonData.forEach(function(executions) {",
+									"        pm.expect(executions.status).to.eql(\"succeeded\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting Executions for a Job 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1ace5f42-0e31-48f5-9cc5-997ee0429f16",
+								"exec": [
+									"pm.test(\"Job execution is succeedec\", function () {",
+									"    var jsonData = pm.response.json().executions;",
+									"",
+									"    jsonData.forEach(function(executions) {",
+									"        pm.expect(executions.status).to.eql(\"succeeded\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all Executions for a Job",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listing Running Executions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/executions/running",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"executions",
+								"running"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execution Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/execution/[ID]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"execution",
+								"[ID]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Input Files for an Execution",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/execution/[ID]/input/files",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"execution",
+								"[ID]",
+								"input",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Execution",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/execution/[ID]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"execution",
+								"[ID]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Delete Executions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ids\": [ 1, 2, 17 ] }"
+						},
+						"url": {
+							"raw": "{{baseurl}}/executions/delete",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"executions",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execution Query",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execution State",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/execution/[ID]/state",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"execution",
+								"[ID]",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execution Output",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/execution/[ID]/output",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"execution",
+								"[ID]",
+								"output"
+							]
+						},
+						"description": "GET /api/5/execution/[ID]/output\r\n\r\nGET /api/10/execution/[ID]/output/node/[NODE]\r\n\r\nGET /api/10/execution/[ID]/output/node/[NODE]/step/[STEPCTX]\r\n\r\nGET /api/10/execution/[ID]/output/step/[STEPCTX]"
+					},
+					"response": []
+				},
+				{
+					"name": "Aborting Executions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/execution/[ID]/abort",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"execution",
+								"[ID]",
+								"abort"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Adhoc",
+			"item": [
+				{
+					"name": "Running Adhoc Commands",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"project\":\"[project]\",\r\n    \"exec\":\"[exec]\",\r\n    \"nodeThreadcount\": #threadcount#,\r\n    \"nodeKeepgoing\": true/false,\r\n    \"asUser\": \"[asUser]\",\r\n    \"filter\": \"[node filter string]\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/run/command",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"run",
+								"command"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running Adhoc Scripts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"project\":\"[project]\",\r\n    \"script\":\"[script]\",\r\n    \"nodeThreadcount\": #threadcount#,\r\n    \"nodeKeepgoing\": true/false,\r\n    \"asUser\": \"[asUser]\",\r\n    \"argString\": \"[argString]\",\r\n    \"scriptInterpreter\": \"[scriptInterpreter]\",\r\n    \"interpreterArgsQuoted\": true/false,\r\n    \"fileExtension\": \"[fileExtension]\",\r\n    \"filter\": \"[node filter string]\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/run/script",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"run",
+								"script"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running Adhoc Script URLs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"project\":\"[project]\",\r\n    \"url\":\"[scriptURL]\",\r\n    \"nodeThreadcount\": #threadcount#,\r\n    \"nodeKeepgoing\": true/false,\r\n    \"asUser\": \"[asUser]\",\r\n    \"argString\": \"[argString]\",\r\n    \"scriptInterpreter\": \"[scriptInterpreter]\",\r\n    \"interpreterArgsQuoted\": true/false,\r\n    \"fileExtension\": \"[fileExtension]\",\r\n    \"filter\": \"[node filter string]\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/run/url",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"run",
+								"url"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Key Storage",
+			"item": [
+				{
+					"name": "Upload Keys",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/run/url",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"run",
+								"url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List keys",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/storage/keys/[PATH]/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"storage",
+								"keys",
+								"[PATH]",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Key Metadata",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/storage/keys/[PATH]/[FILE]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"storage",
+								"keys",
+								"[PATH]",
+								"[FILE]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Key Contents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/octet-stream"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/storage/keys/[PATH]/[FILE]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"storage",
+								"keys",
+								"[PATH]",
+								"[FILE]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Keys",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseurl}}/storage/keys/[PATH]/[FILE]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"storage",
+								"keys",
+								"[PATH]",
+								"[FILE]"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "List Projects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/projects",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting Project Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Creation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "681ead7c-a4c3-45e5-9431-1f3bc3d715e5",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"API\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/projects",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Deletion",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Project Configuration",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/config",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Project Configuration Key",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/config/[KEY]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"config",
+								"[KEY]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Project Configuration Key",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/config/[KEY]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"config",
+								"[KEY]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project Configuration Key",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/config/[KEY]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"config",
+								"[KEY]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Archive Export",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/export",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"export"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Archive Export Async",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/export/async",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"export",
+								"async"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Archive Export Async Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/export/status/[TOKEN]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"export",
+								"status",
+								"[TOKEN]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Archive Export Async Download",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/export/download/[TOKEN]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"export",
+								"download",
+								"[TOKEN]"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Resources for a Project",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/resources",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"resources"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Project ACL Policies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/acl/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"acl",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Project ACL Policy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Project ACL Policy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contents\": \"description: \\\"my policy\\\"\\ncontext:\\n  application: rundeck\\nfor:\\n  project:\\n    - allow: read\\nby:\\n  group: build\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Project ACL Policy copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contents\": \"description: \\\"my policy\\\"\\ncontext:\\n  application: rundeck\\nfor:\\n  project:\\n    - allow: read\\nby:\\n  group: build\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Project ACL Policy copy copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/acl/name.aclpolicy",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"acl",
+								"name.aclpolicy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Archive Import",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/zip",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/import{?jobUuidOption,importExecutions,importConfig,importACL}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"import{"
+							],
+							"query": [
+								{
+									"key": "jobUuidOption,importExecutions,importConfig,importACL}",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Project Configuration",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"value\",\r\n    \"key2\":\"value2...\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/config",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"config"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Resources / Nodes",
+			"item": [
+				{
+					"name": "Listing Resources",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/resources",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"resources"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting Resource Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Rundeck-Auth-Token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/resource/[NAME]",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"resource",
+								"[NAME]"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Security",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
