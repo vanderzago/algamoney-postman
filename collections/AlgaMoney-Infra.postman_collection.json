@@ -1,0 +1,599 @@
+{
+	"info": {
+		"_postman_id": "abd50fe5-9736-40ef-9d64-50e47fe87c30",
+		"name": "AlgaMoney-Infra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Algamoney",
+			"item": [
+				{
+					"name": "Authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "681ead7c-a4c3-45e5-9431-1f3bc3d715e5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/j_security_check?j_username=admin&j_password=admin",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"j_security_check"
+							],
+							"query": [
+								{
+									"key": "j_username",
+									"value": "admin"
+								},
+								{
+									"key": "j_password",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project Creation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "681ead7c-a4c3-45e5-9431-1f3bc3d715e5",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"API\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/projects",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Importing Jobs Graylog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04f5d7b9-7db0-4326-b762-15ab09059b8e",
+								"exec": [
+									"var jsonData = pm.response.json().succeeded;",
+									"",
+									"jsonData.forEach(function(succeeded) {",
+									"    pm.environment.set(\"jobid\", succeeded.id);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/yaml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "- defaultTab: nodes\r\n  description: Invoca a API do Graylog para criar o input\r\n  executionEnabled: true\r\n  loglevel: INFO\r\n  name: Graylog-create-input-5\r\n  nodeFilterEditable: false\r\n  options:\r\n  - name: BASIC_AUTH\r\n    value: YWRtaW46YWRtaW4=\r\n  - name: URL\r\n    value: http://graylog:9000\r\n  plugins:\r\n    ExecutionLifecycle: null\r\n  scheduleEnabled: true\r\n  sequence:\r\n    commands:\r\n    - description: Execução do Script\r\n      exec: /tmp/graylog-create-input.sh ${option.URL} ${option.BASIC_AUTH}\r\n    keepgoing: false\r\n    strategy: node-first"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/import?fileformat=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"import"
+							],
+							"query": [
+								{
+									"key": "fileformat",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running a Job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4d1d418-161f-4902-986c-8298b367941d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status Running\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"running\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/run",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"run"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting Executions for a Job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6305dc33-17d2-4514-afcc-e06ae97158fe",
+								"exec": [
+									"pm.test(\"Job execution is succeedec\", function () {",
+									"    var jsonData = pm.response.json().executions;",
+									"",
+									"    jsonData.forEach(function(executions) {",
+									"        pm.expect(executions.status).to.eql(\"succeeded\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Importing Jobs Grafana Datasource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f72b87f-57ce-41a6-a3ef-15d46a8326f6",
+								"exec": [
+									"var jsonData = pm.response.json().succeeded;",
+									"",
+									"jsonData.forEach(function(succeeded) {",
+									"    pm.environment.set(\"jobid\", succeeded.id);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/yaml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "- defaultTab: nodes\r\n  description: Invoca a API do Grafana para criar o datasource\r\n  executionEnabled: true\r\n  loglevel: INFO\r\n  name: Grafana-create-datasource\r\n  nodeFilterEditable: false\r\n  options:\r\n  - name: BASIC_AUTH\r\n    value: YWRtaW46YWRtaW4=\r\n  - name: ELASTICSEARCH_URL\r\n    value: http://elasticsearch:9200\r\n  - name: URL\r\n    value: http://grafana:3000\r\n  plugins:\r\n    ExecutionLifecycle: null\r\n  scheduleEnabled: true\r\n  sequence:\r\n    commands:\r\n    - exec: /tmp/grafana-create-datasource.sh ${option.URL} ${option.BASIC_AUTH} ${option.ELASTICSEARCH_URL}\r\n    keepgoing: false\r\n    strategy: node-first"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/import?fileformat=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"import"
+							],
+							"query": [
+								{
+									"key": "fileformat",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running a Job 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bf39b175-b7df-478d-986e-c07ac82f50c0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status Running\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"running\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/run",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"run"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting Executions for a Job 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5bf158c-6084-42a0-bf62-7be9962dc945",
+								"exec": [
+									"pm.test(\"Job execution is succeedec\", function () {",
+									"    var jsonData = pm.response.json().executions;",
+									"",
+									"    jsonData.forEach(function(executions) {",
+									"        pm.expect(executions.status).to.eql(\"succeeded\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Importing Jobs Grafana Dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c30429ef-533a-4200-837d-b304d9e455ff",
+								"exec": [
+									"var jsonData = pm.response.json().succeeded;",
+									"",
+									"jsonData.forEach(function(succeeded) {",
+									"    pm.environment.set(\"jobid\", succeeded.id);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/yaml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "- defaultTab: nodes\r\n  description: Invoca a API do Grafana para criar o dashboard\r\n  executionEnabled: true\r\n  loglevel: INFO\r\n  name: Grafana-create-dashboard\r\n  nodeFilterEditable: false\r\n  options:\r\n  - name: URL\r\n    value: http://grafana:3000\r\n  - name: BASIC_AUTH\r\n    value: YWRtaW46YWRtaW4=\r\n  plugins:\r\n    ExecutionLifecycle: null\r\n  scheduleEnabled: true\r\n  sequence:\r\n    commands:\r\n    - exec: /tmp/grafana-create-dashboard.sh ${option.URL} ${option.BASIC_AUTH}\r\n    keepgoing: false\r\n    strategy: node-first"
+						},
+						"url": {
+							"raw": "{{baseurl}}/project/{{project}}/jobs/import?fileformat=yaml",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"project",
+								"{{project}}",
+								"jobs",
+								"import"
+							],
+							"query": [
+								{
+									"key": "fileformat",
+									"value": "yaml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Running a Job 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32ef292f-212b-42b5-bfeb-3da5133ddb1f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status Running\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"running\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/run",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"run"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting Executions for a Job 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1ace5f42-0e31-48f5-9cc5-997ee0429f16",
+								"exec": [
+									"pm.test(\"Job execution is succeedec\", function () {",
+									"    var jsonData = pm.response.json().executions;",
+									"",
+									"    jsonData.forEach(function(executions) {",
+									"        pm.expect(executions.status).to.eql(\"succeeded\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/job/{{jobid}}/executions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"job",
+								"{{jobid}}",
+								"executions"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
