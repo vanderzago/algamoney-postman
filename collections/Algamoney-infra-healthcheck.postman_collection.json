@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "04f276ca-fc59-49ac-8cc2-0cc167401c28",
+		"name": "Algamoney-infra-healthcheck",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Grafana Datasource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f1dbd0b-8815-4f64-9305-5a10e4745f56",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{endpoint_grafana}}/api/datasources",
+					"host": [
+						"{{endpoint_grafana}}"
+					],
+					"path": [
+						"api",
+						"datasources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Graylog Inputs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1eeafd2-8475-41c7-b667-caa02b13552e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{endpoint_graylog}}/api/system/inputs",
+					"host": [
+						"{{endpoint_graylog}}"
+					],
+					"path": [
+						"api",
+						"system",
+						"inputs"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
